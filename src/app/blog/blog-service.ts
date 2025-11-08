@@ -5,11 +5,13 @@ import { Observable } from 'rxjs';
 export interface Blog {
   id?: string;
   title: string;
-  subtitle?: string;
   imageUrl: string;
   content: string;
   date: string;
-  author: string;
+  author1: string;
+  author2: string;
+  subtitle: string;
+  slug:string;
 }
 
 @Injectable({
