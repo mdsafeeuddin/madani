@@ -6,10 +6,10 @@
 /out-tsc
 /bazel-out
 /src/envs
-.firebase
-.github
-.angular
-.vscode
+.firebase/
+.github/
+.angular/
+.vscode/
 
 # Node
 /node_modules
