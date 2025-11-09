@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Firestore, collectionData, collection, where, query } from '@angular/fire/firestore';
+import { map, Observable } from 'rxjs';
 
 export interface Blog {
   id?: string;
@@ -29,4 +29,14 @@ export class BlogService {
     const blogDoc = collection(this.firestore, `blogs/${id}`); // adjust using doc if you like
     return collectionData(blogDoc, { idField: 'id' }) as unknown as Observable<Blog>;
   }
+
+  getBlogBySlug(slug: string): Observable<Blog | undefined> {
+    const q = query(collection(this.firestore, 'blogs'), where('slug','==',slug));
+    return collectionData(q, { idField: 'id' })
+      .pipe(
+        map(arr => arr[0] as Blog | undefined)
+      );
+  }
+
+
 }
