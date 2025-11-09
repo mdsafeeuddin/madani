@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 /src/envs
+.firebase
 
 # Node
 /node_modules
