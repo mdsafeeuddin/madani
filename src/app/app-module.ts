@@ -7,6 +7,7 @@ import { environment } from '../envs/environment';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { BlogModule } from './blog/blog-module';
+import { SharedModule } from './shared/shared.module/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BlogModule } from './blog/blog-module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BlogModule
+    BlogModule,
+    SharedModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
