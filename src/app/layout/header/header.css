@@ -1,0 +1,51 @@
+/* Header styling */
+.navbar .nav-link.active {
+  color: #C9A227;        /* your golden color accent */
+}
+.navbar-brand span {
+  color: #C9A227;        /* golden accent for brand text */
+}
+
+.header-rounded {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.header-rounded.shadow {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Gold accent button */
+.btn-golden {
+  background-color: #C9A227;
+  color: white;
+}
+
+/* Scroll-top button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1050;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.scroll-top-btn.d-none {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Media tweak for mobile responsiveness */
+@media (max-width: 576px) {
+  .header-rounded {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

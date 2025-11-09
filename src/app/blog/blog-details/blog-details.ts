@@ -20,7 +20,6 @@ export class BlogDetails {
     this.slug = this.route.snapshot.paramMap.get('slug')
     this.blogService.getBlogBySlug(this.slug).subscribe(blog => {
       this.blog = blog;
-      console.log(this.blog)
     })
   }
 

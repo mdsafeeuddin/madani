@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { BlogModule } from './blog/blog-module';
 import { SharedModule } from './shared/shared.module/shared.module';
+import { Header } from './layout/header/header';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Header
   ],
   imports: [
     BrowserModule,
