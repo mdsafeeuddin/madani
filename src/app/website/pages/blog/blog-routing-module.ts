@@ -4,12 +4,18 @@ import { BlogList } from './blog-list/blog-list';
 import { BlogDetails } from './blog-details/blog-details';
 
 const routes: Routes = [
-  {path: 'blogs', component: BlogList},
-  {path: 'blog/:slug', component: BlogDetails}
+  {
+    path: '',
+    component: BlogList
+  },
+  {
+    path: ':slug', 
+    component: BlogDetails
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BlogRoutingModule { }
+export class BlogRouting { }

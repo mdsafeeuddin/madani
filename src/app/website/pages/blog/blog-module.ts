@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BlogRoutingModule } from './blog-routing-module';
+import { BlogRouting } from './blog-routing-module';
 import { BlogList } from './blog-list/blog-list';
 import { BlogDetails } from './blog-details/blog-details';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    BlogRoutingModule,
+    BlogRouting,
     SharedModule
   ]
 })
