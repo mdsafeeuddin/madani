@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.website-layout {
+  /* background: linear-gradient(120deg, #004D40, #0F2027);
+  color: #F9F9F9;
+  font-family: 'Aref Ruqaa', serif;
+  font-family: 'El Messiri', sans-serif; */
+  min-height: 100vh;
+  background: linear-gradient(120deg, #004D40, #0F2027);
+  color: #F9F9F9;
+  font-family: 'El Messiri', sans-serif;
+}
+
+
