@@ -3,7 +3,6 @@ import { Blog, BlogService } from '../blog-service';
 
 @Component({
   selector: 'app-blog-list',
-  standalone: false,
   templateUrl: './blog-list.html',
   styleUrl: './blog-list.css',
 })

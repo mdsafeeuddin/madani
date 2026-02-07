@@ -16,7 +16,6 @@ import { Website } from './website';
     WebsiteRouting,
   ],
   exports: [
-    WebHeader
   ]
 })
 export class WebsiteModule { }

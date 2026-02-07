@@ -4,7 +4,6 @@ import { BlogService } from '../blog-service';
 
 @Component({
   selector: 'app-blog-details',
-  standalone: false,
   templateUrl: './blog-details.html',
   styleUrl: './blog-details.css',
 })

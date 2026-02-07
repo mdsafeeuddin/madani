@@ -1,0 +1,55 @@
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(201, 162, 39, 0.3); /* subtle gold border */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(201, 162, 39, 0.2); /* golden glow */
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.card .row {
+  display: flex;
+  align-items: stretch; /* ensures equal height */
+}
+
+.card img {
+  object-fit: cover; /* prevents distortion */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(201, 162, 39, 0.35);
+  cursor: pointer;
+}
+
+.card-title {
+  color: #C9A227; /* Islamic gold tone */
+  font-family: 'Aref Ruqaa', serif;
+}
+
+.card-text {
+  color: #2C3E50;
+}
+
+.card-body {
+  background: #FAF9F6; /* light warm background */
+  border-radius: 0 0 12px 12px;
+}
+
+.arabic-text {
+  font-family: 'Amiri', serif;
+  direction: rtl;
+  text-align: right;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.subtitle-truncated {
+  display: -webkit-box;               /* Use WebKit box model */
+  -webkit-box-orient: vertical;       /* Vertical orientation */
+  -webkit-line-clamp: 6;              /* Limit to 6 lines  :contentReference[oaicite:0]{index=0}*/ 
+  line-clamp: 6;                       /* Standard fallback     :contentReference[oaicite:1]{index=1}*/
+  overflow: hidden;                   /* Hide overflow */
+  line-height: 1.4em;                 /* Set line height for calculation */
+  max-height: calc(1.4em * 6);        /* Max height = 6 lines */
+}
