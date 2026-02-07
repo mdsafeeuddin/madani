@@ -10,4 +10,30 @@
   font-family: 'El Messiri', sans-serif;
 }
 
+/* Scroll-top button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1050;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Gold accent button */
+.btn-golden {
+  background-color: #C9A227;
+  color: white;
+}
+
+.scroll-top-btn.d-none {
+  visibility: hidden;
+  opacity: 0;
+}
 
