@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'web-header',
   standalone: false,
-  templateUrl: './header.html',
-  styleUrl: './header.css',
+  templateUrl: './web-header.html',
+  styleUrl: './web-header.css',
 })
-export class Header {
+export class WebHeader {
   constructor(){
     window.addEventListener('scroll', () => {
       const btn = document.getElementById('scrollTopBtn');

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Website } from './website';
 
 const routes: Routes = [
-  {path: '', loadChildren: () => import('./website/website-module').then(m => m.WebsiteModule)}
+  {path: '', component: Website}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRouting { }
+export class WebsiteRouting { }

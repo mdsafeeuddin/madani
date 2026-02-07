@@ -1,0 +1,106 @@
+/* Header styling */
+
+.header-rounded {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.header-rounded.shadow {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Make logo look sharp, properly sized, and aligned */
+.logo {
+  height: 40px;           /* Ideal navbar height */
+  width: auto;            /* Maintain aspect ratio */
+  object-fit: contain;    /* Prevent stretching */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Optional: subtle hover effect */
+.logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Adjust for smaller or larger navbars if needed */
+@media (min-width: 992px) {
+  .logo {
+    height: 48px; /* slightly larger on desktop */
+  }
+}
+
+
+/* Default hamburger icon */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Change to 'X' when expanded */
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::before,
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 2px;
+  background-color: rgba(0,0,0,0.7);
+  transform-origin: center;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
+.navbar .nav-link.active {
+  color: #C9A227;        /* your golden color accent */
+}
+.navbar-brand span {
+  color: #C9A227;        /* golden accent for brand text */
+}
+
+/* Gold accent button */
+.btn-golden {
+  background-color: #C9A227;
+  color: white;
+}
+
+/* Scroll-top button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1050;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.scroll-top-btn.d-none {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Media tweak for mobile responsiveness */
+@media (max-width: 576px) {
+  .header-rounded {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

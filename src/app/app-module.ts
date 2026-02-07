@@ -1,25 +1,23 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
+import { provideFirebaseApp, initializeApp} from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../envs/environment';
 
-import { AppRoutingModule } from './app-routing-module';
+import { AppRouting } from './app-routing-module';
 import { App } from './app';
-import { BlogModule } from './blog/blog-module';
-import { SharedModule } from './shared/shared.module/shared.module';
-import { Header } from './layout/header/header';
+import { SharedModule } from './shared/shared.module';
+import { WebsiteModule } from './website/website-module';
 
 @NgModule({
   declarations: [
     App,
-    Header
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BlogModule,
-    SharedModule
+    AppRouting,
+    SharedModule,
+    WebsiteModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
