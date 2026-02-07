@@ -11,7 +11,7 @@ import { WebsiteModule } from './website/website-module';
 
 @NgModule({
   declarations: [
-    App,
+    App
   ],
   imports: [
     BrowserModule,

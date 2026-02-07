@@ -13,7 +13,7 @@ import { Website } from './website';
   imports: [
     CommonModule,
     BlogModule,
-    WebsiteRouting,
+    WebsiteRouting
   ],
   exports: [
   ]
