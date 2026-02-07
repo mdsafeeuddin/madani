@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Website } from './website';
 
+
 const routes: Routes = [
-  {path: '', component: Website}
+  {path: '', component: Website},
+  {path: 'blogs', loadChildren: () => import('./blog/blog-module').then(m => m.BlogModule)}
 ];
 
 @NgModule({
