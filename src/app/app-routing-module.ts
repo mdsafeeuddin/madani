@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Website } from './website/website';
 import { WebHome } from './website/pages/home/home';
-import { Admin } from './admin/admin';
-import { Login } from './admin/auth/login/login';
 
 const routes: Routes = [
   {
@@ -24,11 +22,11 @@ const routes: Routes = [
       // {path: 'login', component: Login},
       {
         path: '',
-        loadChildren: () => import('./admin/admin-module').then(m => m.AdminModule)
+        loadChildren: () => 
+          import('./admin/admin-module').then(m => m.AdminModule)
       }
       
     ] 
-    
   }
 ];
 

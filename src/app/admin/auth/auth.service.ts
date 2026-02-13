@@ -6,11 +6,12 @@ import {
   signOut,
   user
 } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user$;
-  constructor(private auth: Auth) {
+  constructor(private router: Router, private auth: Auth) {
     this.user$ = user(this.auth)
   }
 
@@ -19,7 +20,9 @@ export class AuthService {
     return await signInWithPopup(this.auth, provider);
   }
 
-  async logout() {
-    return await signOut(this.auth);
+    logout(){
+    return signOut(this.auth).then(()=>{
+      this.router.navigate(['/admin/login'])
+    })
   }
 }
