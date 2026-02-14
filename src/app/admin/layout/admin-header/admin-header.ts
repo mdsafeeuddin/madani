@@ -11,7 +11,7 @@ import { AuthService } from "../../auth/auth.service";
 })
 
 export class AdminHeader implements AfterViewInit{
-  isCollapsed = false;
+  isCollapsed = true;
 
   constructor(public auth: AuthService){}
 

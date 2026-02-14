@@ -1,14 +1,74 @@
-/* Fix header overlap */
+.navbar {
+  background-color: var(--header-bg) !important;
+  color: var(--header-text);
+}
+
+.navbar .btn {
+  color: var(--header-text);
+  border-color: var(--header-text);
+}
+
+.navbar .logo {
+  color: var(--header-text);
+}
+
+/* Logo styles */
+.logo {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.logo-mini {
+  font-size: 1.4rem;
+}
+
+.logo-full {
+  animation: fadeIn 0.3s ease;
+}
+
+.logo-full.hidden {
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* Smooth fade */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 /* Sidebar */
 .sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
   width: 250px;
   min-height: 100vh;
-  position: fixed;
-  top: 56px;
+  position: absolute;
+  top: 53px;
   left: 0;
   transition: width 0.3s ease;
   overflow-x: hidden;
+}
+
+.sidebar .nav-link {
+  color: var(--sidebar-text);
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  color: var(--sidebar-text-active);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Collapsed state */
@@ -28,6 +88,7 @@
 
 /* Icon */
 .sidebar-icon {
+  color: var(--sidebar-text-active);
   font-size: 1.2rem;
   min-width: 40px;
   text-align: center;
