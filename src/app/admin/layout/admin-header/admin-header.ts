@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { AfterViewInit, Component } from "@angular/core";
+
+import * as bootstrap from 'bootstrap';
 import { AuthService } from "../../auth/auth.service";
 
 @Component({
@@ -8,7 +10,20 @@ import { AuthService } from "../../auth/auth.service";
   standalone: false
 })
 
-export class AdminHeader{
-constructor(public auth: AuthService){}
-  
+export class AdminHeader implements AfterViewInit{
+  isCollapsed = false;
+
+  constructor(public auth: AuthService){}
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  ngAfterViewInit() {
+    const tooltipTriggerList =document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    
+    tooltipTriggerList.forEach(el =>{
+      new bootstrap.Tooltip(el);
+    })
+  }
 }

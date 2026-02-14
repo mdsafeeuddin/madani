@@ -1,1 +1,48 @@
-<h1>Header</h1><button (click)="auth.logOut()">Logout</button>
+<!-- HEADER -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <button class="btn btn-outline-light" (click)="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+    <span class="navbar-brand ms-2">My App</span>
+  </div>
+</nav>
+
+<div class="d-flex">
+  <!-- SIDEBAR -->
+  <div
+    class="sidebar bg-dark text-white"
+    [class.collapsed]="isCollapsed"
+  >
+    <ul class="nav flex-column pt-3">
+      <li class="nav-item">
+        <a class="nav-link text-white d-flex align-items-center" href="#">
+          <i class="bi bi-speedometer2 sidebar-icon"></i>
+          <span class="menu-text">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white d-flex align-items-center" href="#">
+          <i class="bi bi-people sidebar-icon"></i>
+          <span class="menu-text">Users</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white d-flex align-items-center" href="#">
+          <i class="bi bi-gear sidebar-icon"></i>
+          <span class="menu-text">Settings</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+<a
+  class="nav-link text-white d-flex align-items-center"
+  href="#"
+  data-bs-toggle="tooltip"
+  data-bs-placement="right"
+  title="Dashboard"
+>
+
