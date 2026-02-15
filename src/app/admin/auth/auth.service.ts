@@ -44,7 +44,6 @@ export class AuthService {
       this.router.navigate(['/admin/login']);
       return;
     }
-
     // ✅ ALLOWED
     this.router.navigate(['/admin']);
   }

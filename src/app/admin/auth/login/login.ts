@@ -11,7 +11,10 @@ import { Router } from "@angular/router";
 })
 
 export class Login{
-  constructor(private router: Router, public auth: AuthService){}
+  constructor(
+    private router: Router, 
+    public auth: AuthService)
+  {}
 
   ngOnInit(){
     this.auth.user$.subscribe(user => {

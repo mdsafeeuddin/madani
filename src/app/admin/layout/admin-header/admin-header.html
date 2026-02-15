@@ -2,9 +2,12 @@
 <nav class="navbar fixed-top">
   <div class="profile-container"
     (click)="toggleMenu($event)">
-    <div class="avatar">U</div>
-    <span class="username">{{ username }}</span>
-
+    @if (auth.user$ | async; as user) {
+      
+      <span class="username">{{ user.displayName }}</span>
+      <img class="avatar" [src]="user.photoURL" width="50" alt="" />
+    }
+    
     @if(menuOpen){
       <div class="dropdown"
         (click)="$event.stopPropagation()">
@@ -58,7 +61,7 @@
     </div>
 
     <!-- MENU -->
-    <ul class="nav flex-column pt-3">
+    <ul class="nav flex-column">
       <li class="nav-item">
         <a class="nav-link text-white d-flex align-items-center" href="#">
           <i class="bi bi-speedometer2 sidebar-icon"></i>

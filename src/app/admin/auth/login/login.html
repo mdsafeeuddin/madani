@@ -1,9 +1,22 @@
-<button (click)="auth.googleSignIn()">Sign in with Google</button>
+<!-- <button (click)="auth.googleSignIn()">Sign in with Google</button>  -->
 
 
-@if (auth.user$ | async; as user) {
+<!-- @if (auth.user$ | async; as user) {
   <div>
     <p>Welcome {{ user.displayName }}</p>
     <img [src]="user.photoURL" width="50" alt="" />
   </div>
-}
+} -->
+<div class="login-container">
+  <div class="login-card">
+    <h1>Welcome Back</h1>
+    <p>Sign in to continue</p>
+    <button href="#" class="btn google-btn w-100" (click)="auth.googleSignIn()">
+        <img class="google-icon"
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt="Google">
+        Continue with Google
+    </button>
+  </div>
+</div>
+

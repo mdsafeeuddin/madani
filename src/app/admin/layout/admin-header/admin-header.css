@@ -1,5 +1,4 @@
 /* ================= HEADER ================= */
-
 .navbar {
   display: flex;
   justify-content: flex-end;
@@ -20,6 +19,7 @@
 }
 
 /* Avatar */
+
 .avatar {
   width: 36px;
   height: 36px;
