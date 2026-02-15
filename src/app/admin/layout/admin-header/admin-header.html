@@ -1,50 +1,66 @@
 <!-- HEADER -->
-<nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
+<nav class="navbar fixed-top">
+  <div class="profile-container"
+    (click)="toggleMenu($event)">
+    <div class="avatar">U</div>
+    <span class="username">{{ username }}</span>
 
-    <!-- LEFT GROUP -->
-    <div class="d-flex align-items-center">
-      
-      <!-- Logo -->
-      <div class="logo ms-3">
-        @if (isCollapsed) {
-          <!-- Mini logo -->
-          <span class="logo-mini">
-            <i class="bi bi-lightning-charge-fill"></i>
-          </span>
-        } @else {
-          <!-- Full logo -->
-          <span class="logo-full">
-            <i class="bi bi-lightning-charge-fill me-2"></i>
-            Lightning Admin
-          </span>
-        }
+    @if(menuOpen){
+      <div class="dropdown"
+        (click)="$event.stopPropagation()">
+        <button (click)="goToProfile()">
+          <i class="bi bi-person"></i>
+          Profile
+        </button>
+        <button (click)="goToSettings()">
+          <i class="bi bi-gear"></i>
+          Settings
+        </button>
+        <hr />
+        <button class="logout" (click)="logout()">
+          <i class="bi bi-power"></i>
+          Logout
+        </button>
       </div>
-
-      <!-- Toggle Button -->
-      <button class="btn btn-outline-light d-flex align-items-center"
-        (click)="toggleSidebar()">
-        <i class="bi"
-          [ngClass]="isCollapsed ? 'bi-list' : 'bi-x-lg'">
-        </i>
-      </button>
-    </div>
+    }
   </div>
 </nav>
 
 
-<div class="d-flex">
-  <!-- SIDEBAR -->
-  <div class="sidebar bg-dark text-white"
-      [class.collapsed]="isCollapsed">
+<!-- SIDEBAR -->
+<div class="sidebar"
+     [class.collapsed]="isCollapsed">
+
+  <!-- MOBILE TOGGLE BUTTON -->
+  <button
+    class="sidebar-toggle d-lg-none"
+    (click)="toggleSidebar()"
+    aria-label="Toggle sidebar">
+    <i class="bi"
+       [ngClass]="isCollapsed ? 'bi-list' : 'bi-x-lg'">
+    </i>
+  </button>
+
+  <div class="sidebar-scroll">
+
+    <!-- LOGO -->
+    <div class="logo-wrapper">
+      <div class="logo">
+        <span class="logo-mini">
+          <i class="bi bi-lightning-charge-fill"></i>
+        </span>
+
+        <span class="logo-full">
+          <i class="me-2"></i>
+          Mind & Mizan
+        </span>
+      </div>
+    </div>
+
+    <!-- MENU -->
     <ul class="nav flex-column pt-3">
       <li class="nav-item">
-        <a class="nav-link text-white d-flex align-items-center"
-            href="#"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-container=".sidebar"
-            [attr.title]="isCollapsed ? 'Dashboard' : null">
+        <a class="nav-link text-white d-flex align-items-center" href="#">
           <i class="bi bi-speedometer2 sidebar-icon"></i>
           <span class="menu-text">Dashboard</span>
         </a>
@@ -64,7 +80,14 @@
         </a>
       </li>
     </ul>
+
   </div>
+</div>
 
-
+<!-- MOBILE BACKDROP -->
+ @if(!isCollapsed){
+  <div class="sidebar-backdrop d-lg-none"
+     (click)="toggleSidebar()">
+</div>
+ }
 

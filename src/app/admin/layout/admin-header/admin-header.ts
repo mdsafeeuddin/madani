@@ -1,6 +1,4 @@
-import { AfterViewInit, Component } from "@angular/core";
-
-import * as bootstrap from 'bootstrap';
+import { Component, HostListener } from "@angular/core";
 import { AuthService } from "../../auth/auth.service";
 
 @Component({
@@ -10,8 +8,10 @@ import { AuthService } from "../../auth/auth.service";
   standalone: false
 })
 
-export class AdminHeader implements AfterViewInit{
+export class AdminHeader{
   isCollapsed = true;
+  menuOpen = false;
+  username = 'John Doe';
 
   constructor(public auth: AuthService){}
 
@@ -19,11 +19,29 @@ export class AdminHeader implements AfterViewInit{
     this.isCollapsed = !this.isCollapsed;
   }
 
-  ngAfterViewInit() {
-    const tooltipTriggerList =document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    
-    tooltipTriggerList.forEach(el =>{
-      new bootstrap.Tooltip(el);
-    })
+  toggleMenu(event: MouseEvent) {
+    event.stopPropagation(); // 🔑 critical
+    this.menuOpen = !this.menuOpen;
   }
+
+  @HostListener('document:click')
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
+  goToProfile() {
+    console.log('Profile');
+    this.menuOpen = false;
+  }
+
+  goToSettings() {
+    console.log('Settings');
+    this.menuOpen = false;
+  }
+
+  logout() {
+    this.menuOpen = false;
+    this.auth.logOut();
+  }
+
 }

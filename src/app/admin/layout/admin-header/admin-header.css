@@ -1,107 +1,256 @@
+/* ================= HEADER ================= */
+
 .navbar {
-  background-color: var(--header-bg) !important;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background-color: var(--header-bg);
   color: var(--header-text);
 }
 
-.navbar .btn {
-  color: var(--header-text);
-  border-color: var(--header-text);
-}
-
-.navbar .logo {
-  color: var(--header-text);
-}
-
-/* Logo styles */
-.logo {
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 600;
-  white-space: nowrap;
+/* Profile container */
+.profile-container {
   display: flex;
   align-items: center;
+  gap: 8px;
+  position: relative;
+  cursor: pointer;
 }
 
-.logo-mini {
-  font-size: 1.4rem;
+/* Avatar */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #6c757d;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.logo-full {
-  animation: fadeIn 0.3s ease;
+/* Username */
+.username {
+  font-weight: 500;
 }
 
-.logo-full.hidden {
-  width: 0;
-  opacity: 0;
-  overflow: hidden;
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  background: white;
+  color: #333;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  min-width: 160px;
+  z-index: 2000;
 }
 
-/* Smooth fade */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-4px);
+
+.dropdown button {
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background: #f1f1f1;
+}
+
+.dropdown hr {
+  margin: 4px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.dropdown .logout {
+  color: #d9534f;
+}
+
+/* Logout button */
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.logout-btn:hover {
+  background-color: #f1f1f1;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 70px;
+
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+
+  z-index: 1100;
+  overflow: visible;
+
+  transition: width 0.25s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ================= SCROLL ================= */
+
+.sidebar-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ================= DESKTOP HOVER ================= */
+
+@media (min-width: 992px) {
+  .sidebar:hover {
+    width: 250px;
   }
-  to {
-    opacity: 1;
+}
+
+/* ================= MOBILE SLIDE ================= */
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    width: 250px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar:not(.collapsed) {
     transform: translateX(0);
   }
 }
 
-/* Sidebar */
-.sidebar {
-  background-color: var(--sidebar-bg);
-  color: var(--sidebar-text);
-  width: 250px;
-  min-height: 100vh;
+/* ================= TOGGLE (MOBILE ONLY) ================= */
+
+.sidebar-toggle {
   position: absolute;
-  top: 53px;
-  left: 0;
-  transition: width 0.3s ease;
-  overflow-x: hidden;
+  top: 12px;
+  right: -18px;
+
+  width: 36px;
+  height: 36px;
+
+  background-color: var(--sidebar-bg);
+  color: #fff;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 1200;
 }
 
-.sidebar .nav-link {
-  color: var(--sidebar-text);
+/* ================= LOGO ================= */
+
+.logo-wrapper {
+  padding: 16px;
 }
 
-.sidebar .nav-link:hover,
-.sidebar .nav-link.active {
-  color: var(--sidebar-text-active);
-  background-color: rgba(255, 255, 255, 0.1);
-}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-/* Collapsed state */
-.sidebar.collapsed {
-  width: 70px;
-}
-
-/* Content shift */
-.content {
-  margin-left: 250px;
-  transition: margin-left 0.3s ease;
-}
-
-.sidebar.collapsed ~ .content {
-  margin-left: 70px;
-}
-
-/* Icon */
-.sidebar-icon {
-  color: var(--sidebar-text-active);
   font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Mini icon always visible */
+.logo-mini {
+  display: inline-flex;
+  font-size: 1.4rem;
+}
+
+/* Full text hidden by default */
+.logo-full {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.2s ease, max-width 0.25s ease;
+}
+
+/* Desktop hover → show text */
+@media (min-width: 992px) {
+  .sidebar:hover .logo-full {
+    opacity: 1;
+    max-width: 200px;
+    pointer-events: auto;
+  }
+}
+
+/* Mobile open → show text */
+@media (max-width: 991.98px) {
+  .sidebar:not(.collapsed) .logo-full {
+    opacity: 1;
+    max-width: 200px;
+    pointer-events: auto;
+  }
+}
+
+/* ================= MENU ================= */
+
+.sidebar-icon {
   min-width: 40px;
   text-align: center;
+  font-size: 1.2rem;
+  color: var(--sidebar-text-active);
 }
 
-/* Menu text */
 .menu-text {
-  transition: opacity 0.2s ease, margin 0.2s ease;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.2s ease, max-width 0.25s ease;
 }
 
-/* Hide text when collapsed */
-.sidebar.collapsed .menu-text {
-  opacity: 0;
-  margin-left: -10px;
-  pointer-events: none;
+@media (min-width: 992px) {
+  .sidebar:hover .menu-text {
+    opacity: 1;
+    max-width: 200px;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sidebar:not(.collapsed) .menu-text {
+    opacity: 1;
+    max-width: 200px;
+    pointer-events: auto;
+  }
+}
+
+/* ================= BACKDROP ================= */
+
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1090;
 }

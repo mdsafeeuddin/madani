@@ -1,19 +1,15 @@
 :root {
   /* HEADER */
-  --header-bg: #0d6efd;          /* Bootstrap primary blue */
-  --header-text: #ffffff;
+  --header-bg:#EBB866;         
+  --header-text: #4A4A4A;
 
   /* SIDEBAR */
-  --sidebar-bg: #212529;         /* Dark gray */
-  --sidebar-text: #adb5bd;
+  --sidebar-bg:#4A4A4A;         
+  --sidebar-text: #EBB866;
   --sidebar-text-active: #ffffff;
 
   /* CONTENT */
   --content-bg: #f8f9fa;
 }
 
-
-body{
-  margin: 0;
-}
 
