@@ -17,11 +17,11 @@ export class Login{
   {}
 
   ngOnInit(){
-    this.auth.user$.subscribe(user => {
-      if(user){
-        this.router.navigate(['/admin'])
-      }
-    });
+    // this.auth.user$.subscribe(user => {
+    //   if(user){
+    //     this.router.navigate(['/admin'])
+    //   }
+    // });
   }
 
 }
