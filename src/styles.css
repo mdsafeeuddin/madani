@@ -1,3 +1,7 @@
+@import './styles/global.css';
+@import './styles/design-system.css';
+
+
 :root {
   /* HEADER */
   --header-bg:#EBB866;         

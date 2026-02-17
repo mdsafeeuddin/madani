@@ -1,0 +1,23 @@
+/* =====================================
+   GLOBAL STYLES
+   ===================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  color: var(--text-primary);
+  background-color: var(--bg-offwhite);
+  line-height: 1.6;
+}

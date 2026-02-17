@@ -1,0 +1,5 @@
+<div class="card" [ngClass]="{ 'card-psych': variant === 'psych' }">
+  <h3>{{ title }}</h3>
+  <p class="text-muted">{{ description }}</p>
+  <ng-content></ng-content>
+</div>

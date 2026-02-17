@@ -9,6 +9,7 @@ import { AppRouting } from './app-routing-module';
 import { App } from './app';
 import { SharedModule } from './shared/shared.module';
 import { WebsiteModule } from './website/website-module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { WebsiteModule } from './website/website-module';
     BrowserModule,
     AppRouting,
     SharedModule,
-    WebsiteModule
+    WebsiteModule,
+    CommonModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
