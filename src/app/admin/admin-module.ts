@@ -6,6 +6,7 @@ import { Login } from './auth/login/login';
 import { AdminHome } from './pages/home/admin-home';
 import { AdminHeader } from './layout/admin-header/admin-header';
 import { RouterModule } from '@angular/router';
+import { AdminSidebar } from './layout/admin-sidebar/admin-sidebar';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
     Admin,
     Login,
     AdminHome,
-    AdminHeader
+    AdminHeader,
+    AdminSidebar
   ],
   imports: [
     CommonModule,

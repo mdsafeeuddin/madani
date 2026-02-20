@@ -1,5 +1,6 @@
 import { Component, HostListener } from "@angular/core";
 import { AuthService } from "../../auth/auth.service";
+import { AdminLayoutService } from "../admin-layout.service";
 
 @Component({
   selector: 'admin-header',
@@ -9,18 +10,19 @@ import { AuthService } from "../../auth/auth.service";
 })
 
 export class AdminHeader{
-  isCollapsed = true;
   menuOpen = false;
-  username = 'John Doe';
 
-  constructor(public auth: AuthService){}
+  constructor(
+    public auth: AuthService,
+    private layout: AdminLayoutService
+  ) {}
 
   toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
+    this.layout.toggleSidebar();
   }
 
   toggleMenu(event: MouseEvent) {
-    event.stopPropagation(); // 🔑 critical
+    event.stopPropagation();
     this.menuOpen = !this.menuOpen;
   }
 
@@ -29,19 +31,22 @@ export class AdminHeader{
     this.menuOpen = false;
   }
 
+  handleAvatarError(event: Event) {
+    (event.target as HTMLImageElement).src = 'assets/avatar.png';
+  }
+
   goToProfile() {
-    console.log('Profile');
     this.menuOpen = false;
+    console.log('Profile');
   }
 
   goToSettings() {
-    console.log('Settings');
     this.menuOpen = false;
+    console.log('Settings');
   }
 
   logout() {
     this.menuOpen = false;
     this.auth.logOut();
   }
-
 }

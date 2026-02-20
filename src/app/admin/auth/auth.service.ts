@@ -8,6 +8,7 @@ import {
 } from '@angular/fire/auth';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,7 +18,17 @@ export class AuthService {
     private auth: Auth,
     private firestore: Firestore) 
     {
-      this.user$ = user(this.auth)
+      this.user$ = user(this.auth).pipe(
+        map(user => {
+          if (!user) return null;
+
+          return {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL || 'assets/avatar.png'
+          };
+        })
+      );
     }
 
   async googleSignIn() {
