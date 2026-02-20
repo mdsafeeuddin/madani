@@ -22,8 +22,6 @@ import { HeroComponent } from './pages/home/hero';
     BlogModule,
     RouterModule,
     SharedModule
-  ],
-  exports: [
   ]
 })
 export class WebsiteModule { }

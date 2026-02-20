@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collectionData, collection, where, query } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, where, query, doc, docData } from '@angular/fire/firestore';
 import { map, Observable } from 'rxjs';
 
 export interface Blog {
@@ -18,25 +18,28 @@ export interface Blog {
   providedIn: 'root'
 })
 export class BlogService {
-  private firestore: Firestore = inject(Firestore);
-  private blogsCollection = collection(this.firestore, 'blogs');
+  
+  private firestore = inject(Firestore);
 
   getBlogs(): Observable<Blog[]> {
-    return collectionData(this.blogsCollection, { idField: 'id' }) as Observable<Blog[]>;
+    const blogsCollection = collection(this.firestore, 'blogs');
+    return collectionData(blogsCollection, { idField: 'id' }) as Observable<Blog[]>;
   }
 
   getBlog(id: string): Observable<Blog> {
-    const blogDoc = collection(this.firestore, `blogs/${id}`); // adjust using doc if you like
-    return collectionData(blogDoc, { idField: 'id' }) as unknown as Observable<Blog>;
+    const blogDoc = doc(this.firestore, `blogs/${id}`);
+    return docData(blogDoc, { idField: 'id' }) as Observable<Blog>;
   }
 
   getBlogBySlug(slug: string): Observable<Blog | undefined> {
-    const q = query(collection(this.firestore, 'blogs'), where('slug','==',slug));
-    return collectionData(q, { idField: 'id' })
-      .pipe(
-        map(arr => arr[0] as Blog | undefined)
-      );
+    const q = query(
+      collection(this.firestore, 'blogs'),
+      where('slug', '==', slug)
+    );
+
+    return collectionData(q, { idField: 'id' }).pipe(
+      map(arr => arr[0] as Blog | undefined)
+    );
   }
-
-
 }
+
