@@ -1,30 +1,32 @@
 <div class="container">
   <h1>Madani Posts</h1>
-  <div *ngFor="let blog of blogs" class="card mb-3 shadow-sm">
-    <div class="row g-0 d-flex align-items-stretch">
-      <!-- Image column -->
-      <div class="col-md-4 p-0">
-        <div class="h-100">
-          <img src="assets/images/slide-title1.png"
-              class="img-fluid h-100 w-100"
-              alt="Hadith Image">
+  @for(blog of blogs$ | async; track blog.id){
+    <div class="card mb-3 shadow-sm">
+      <div class="row g-0 d-flex align-items-stretch">
+        <!-- Image column -->
+        <div class="col-md-4 p-0">
+          <div class="h-100">
+            <img src="assets/images/slide-title1.png"
+                class="img-fluid h-100 w-100"
+                alt="Hadith Image">
+          </div>
         </div>
-      </div>
 
-      <!-- Text column -->
-      <div class="col-md-8 d-flex flex-column">
-        <div class="card-body flex-grow-1">
-          <h5 class="card-title mb-2">
-           <a [routerLink]="[blog.slug]">{{blog.title}}</a>
-          </h5>
-          <p class="card-text subtitle-truncated mb-1 over">{{blog.subtitle}}
-          </p>
-        </div>
-        <div class="card-footer border-0 d-flex flex-column flex-sm-row justify-content-between">
-          <small class="text-body-secondary">{{blog.author1}}</small>
-          <small class="text-body-secondary">{{blog.author2}}</small>
+        <!-- Text column -->
+        <div class="col-md-8 d-flex flex-column">
+          <div class="card-body flex-grow-1">
+            <h5 class="card-title mb-2">
+            <a [routerLink]="[blog.slug]">{{blog.title}}</a>
+            </h5>
+            <p class="card-text subtitle-truncated mb-1 over">{{blog.subtitle}}
+            </p>
+          </div>
+          <div class="card-footer border-0 d-flex flex-column flex-sm-row justify-content-between">
+            <small class="text-body-secondary">{{blog.author1}}</small>
+            <small class="text-body-secondary">{{blog.author2}}</small>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  }
 </div>

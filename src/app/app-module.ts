@@ -24,7 +24,6 @@ import { CommonModule } from '@angular/common';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideClientHydration(withEventReplay()),
     provideFirebaseApp(()=>initializeApp(environment.firebase)),
     provideFirestore(()=>getFirestore()),
     provideAuth(()=>getAuth())

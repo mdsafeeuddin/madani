@@ -9,13 +9,15 @@ import { Blog, BlogService } from '../blog-service';
 })
 
 export class BlogList {
-blogs: Blog[] = [];
+  blogs$;
 
-  constructor(private blogService: BlogService) {}
-
-  ngOnInit() {
-    this.blogService.getBlogs().subscribe(data => {
-      this.blogs = data;
-    });
+  constructor(private blogService: BlogService) {
+    this.blogs$ = this.blogService.getBlogs();
   }
+
+  // ngOnInit() {
+  //   this.blogService.getBlogs().subscribe(data => {
+  //     this.blogs = data;
+  //   });
+  // }
 }
