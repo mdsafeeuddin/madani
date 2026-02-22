@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   standalone: false,
@@ -7,7 +8,23 @@ import { Component } from "@angular/core";
 })
 
 export class VideosAdmin{
-  constructor(){
-    
+   videoForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.videoForm = this.fb.group({
+      baseUrl: ['', Validators.required],
+      channelId: [''],
+      isPlaylist: [''],
+      videoTitle: [''],
+      watchId: [''],
+      publish: ['']
+    });
+  }
+
+  submitForm() {
+    if (this.videoForm.valid) {
+      console.log(this.videoForm.value);
+      this.videoForm.reset()
+    }
   }
 }

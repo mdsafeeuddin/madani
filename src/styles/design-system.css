@@ -474,9 +474,10 @@ button {
 }
 
 /* ---------- Forms ---------- */
-input,
-textarea,
-select {
+/* Normal state */
+.form-control,
+textarea.form-control,
+select.form-control {
   width: 100%;
   padding: 10px 12px;
   border-radius: var(--radius-sm);
@@ -484,10 +485,23 @@ select {
   font-family: inherit;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+/* Focus state */
+.form-control:focus,
+.form-check-input:focus,
+textarea.form-control:focus,
+select.form-control:focus {
   outline: none;
+  border-color: var(--gold-primary);
+  box-shadow: none; /* VERY IMPORTANT */
+}
+
+.form-check-input:checked {
+  background-color: var(--gold-primary);
+  border-color: var(--gold-primary);
+}
+
+.form-check-input:focus {
+  box-shadow: none;
   border-color: var(--gold-primary);
 }
 
