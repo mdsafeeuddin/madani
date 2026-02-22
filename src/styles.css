@@ -2,18 +2,4 @@
 @import './styles/design-system.css';
 
 
-:root {
-  /* HEADER */
-  --header-bg:#EBB866;         
-  --header-text: #4A4A4A;
-
-  /* SIDEBAR */
-  --sidebar-bg:#4A4A4A;         
-  --sidebar-text: #EBB866;
-  --sidebar-text-active: #ffffff;
-
-  /* CONTENT */
-  --content-bg: #f8f9fa;
-}
-
 

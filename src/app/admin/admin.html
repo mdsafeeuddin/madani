@@ -1,5 +1,9 @@
 <admin-header></admin-header>
-<admin-sidebar></admin-sidebar>
 
-<!-- REQUIRED -->
-<router-outlet></router-outlet>
+<div class="admin-layout">
+  <admin-sidebar></admin-sidebar>
+
+  <main class="admin-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

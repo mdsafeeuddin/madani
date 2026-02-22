@@ -4,7 +4,7 @@ import { Login } from "./auth/login/login";
 import { Admin } from "./admin";
 import { AuthGuard } from "./auth/auth.guard";
 import { AdminHome } from "./pages/home/admin-home";
-import { LoginGuard } from "./auth/login.guard";
+import { VideosAdmin } from "./pages/videos/videos-admin";
 
 const routes: Routes = [
   {
@@ -13,15 +13,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children:[
       {
-        path: '',
+        path: 'home',
         component: AdminHome
+      },
+      {
+        path:'videos',
+        component: VideosAdmin
       }
     ]
   },
   {
     path: 'login', 
     component: Login
-    //canActivate: [LoginGuard]
   }
 ];
 

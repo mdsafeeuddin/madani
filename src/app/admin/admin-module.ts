@@ -7,6 +7,7 @@ import { AdminHome } from './pages/home/admin-home';
 import { AdminHeader } from './layout/admin-header/admin-header';
 import { RouterModule } from '@angular/router';
 import { AdminSidebar } from './layout/admin-sidebar/admin-sidebar';
+import { VideosAdmin } from './pages/videos/videos-admin';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AdminSidebar } from './layout/admin-sidebar/admin-sidebar';
     Login,
     AdminHome,
     AdminHeader,
-    AdminSidebar
+    AdminSidebar,
+    VideosAdmin
   ],
   imports: [
     CommonModule,
