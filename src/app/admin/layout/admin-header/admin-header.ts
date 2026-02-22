@@ -5,7 +5,6 @@ import { AdminLayoutService } from "../admin-layout.service";
 @Component({
   selector: 'admin-header',
   templateUrl: 'admin-header.html',
-  styleUrl: 'admin-header.css',
   standalone: false
 })
 

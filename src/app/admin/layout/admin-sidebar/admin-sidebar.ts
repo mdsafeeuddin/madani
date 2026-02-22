@@ -4,8 +4,7 @@ import { AdminLayoutService } from '../admin-layout.service';
 @Component({
   selector: 'admin-sidebar',
   standalone: false,
-  templateUrl: './admin-sidebar.html',
-  styleUrl: './admin-sidebar.css',
+  templateUrl: './admin-sidebar.html'
 })
 export class AdminSidebar {
   collapsed$:any;
