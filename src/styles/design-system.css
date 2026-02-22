@@ -98,7 +98,7 @@
 /* HEADER */
 
 /* ================= HEADER ================= */
-.navbar {
+.navbar.admin {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -400,7 +400,7 @@ small {
 
 /* ---------- Navigation ---------- */
 .navbar {
-  background-color: var(--header-bg);
+  background-color: var(--green-deep);
   padding: var(--space-md) 0;
 }
 
