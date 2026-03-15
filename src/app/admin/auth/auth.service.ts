@@ -49,7 +49,7 @@ export class AuthService {
       async () => {
         const allowedUserRef = doc(this.firestore, 'allowedUsers/emails');
         const snap = await getDoc(allowedUserRef);
-        return snap.data()?.['email'] ?? [];
+        return snap.data()?.['emails'] ?? [];
       }
     );
    

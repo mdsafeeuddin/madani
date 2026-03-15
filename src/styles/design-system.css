@@ -75,6 +75,8 @@
 
   --header-height: 35px;
   --sidebar-width-desktop: 65px;
+
+  --bs-btn-disabled-opacity: 0.65;
 }
 
 .admin-content {
@@ -451,6 +453,13 @@ button {
   color: var(--text-inverse);
 }
 
+.btn:disabled, fieldset:disabled .btn {
+    color: var(--green-deep);
+    pointer-events: none;
+    background-color: var(--gold-soft);
+    border-color: var(--bs-btn-disabled-border-color);
+    opacity: var(--bs-btn-disabled-opacity);
+}
 /* ---------- Cards ---------- */
 .card {
   background-color: var(--white);
@@ -538,4 +547,15 @@ select.form-control:focus {
   align-items: center;
   justify-content: center;
 }
+
+.nav-link.active {
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+}
+
+.submenu {
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
 

@@ -4,38 +4,40 @@
     (ngSubmit)="submitForm()">
     <div class="row g-3">
       <div class="col-md-12">
-        <label class="form-label">Video Title</label>
-        <input class="form-control" type="text" formControlName="videoTitle" />
+        <label class="form-label" for="videoTitle">Video Title</label>
+        <input class="form-control" type="text" id="videoTitle" formControlName="videoTitle" />
       </div>
       <div class="col-md-6">
-        <label class="form-label">Base URL</label>
-        <input class="form-control" type="text" formControlName="baseUrl" />
+        <label class="form-label" for="baseUrl">Base URL</label>
+        <input class="form-control" type="text" id="baseUrl" formControlName="baseUrl" />
       </div>
       <div class="col-md-6">
-        <label class="form-label">Channel ID</label>
-        <input class="form-control" type="text" formControlName="channelId" />
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Watch ID</label>
-        <input class="form-control" type="text" formControlName="watchId" />
+        <label class="form-label" for="channelId">Channel ID</label>
+        <input class="form-control" type="text" id="channelId" formControlName="channelId" />
       </div>
       <div class="col-md-6">
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox"  formControlName="isPlaylist">
-          <label class="form-check-label" >
-            Is Playlist?
-          </label>
+          <label class="form-check-label" for="isPlaylist">Is Playlist?</label>
+          <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isPlaylist">
         </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="watchId">Watch ID</label>
+        <input class="form-control" type="text" id="watchId" formControlName="watchId" />
+      </div>
+      <div class="col-md-6">
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" formControlName="publish">
-          <label class="form-check-label">
-            Publish
-          </label>
+          <label class="form-check-label" for="isPublish">Publish</label>
+          <input class="form-check-input" type="checkbox" id="isPublish" formControlName="isPublish">
         </div>
       </div>
     </div>
-    <button type="submit" class="btn-primary my-2" [disabled]="videoForm.invalid">
-      Submit
-    </button>
+    <div class="row">
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary my-2" [disabled]="videoForm.invalid">
+          Submit
+        </button>
+      </div>
+    </div>
   </form>
 </div>

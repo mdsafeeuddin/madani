@@ -10,8 +10,14 @@
     </i>
   </button>
 
-  <div class="sidebar-scroll">
+  <!-- BACKDROP -->
+  @if (!(collapsed$ | async)) {
+    <div class="sidebar-backdrop d-lg-none"
+        (click)="close()">
+    </div>
+  }
 
+  <div class="sidebar-scroll">
     <!-- LOGO -->
     <div class="logo-wrapper">
       <div class="logo">
@@ -23,7 +29,7 @@
     </div>
 
     <!-- MENU -->
-    <ul class="nav flex-column">
+    <!-- <ul class="nav flex-column">
       <li class="nav-item">
         <a class="nav-link text-white d-flex align-items-center" [routerLink]="['home']">
           <i class="bi bi-speedometer2 sidebar-icon"></i>
@@ -44,13 +50,51 @@
           <span class="menu-text">Settings</span>
         </a>
       </li>
+    </ul> -->
+    <ul class="nav flex-column">
+
+      @for (item of menu; track item.label) {
+        <li class="nav-item">
+          <!-- MENU WITH CHILDREN -->
+          @if (item.children) {
+            <a class="nav-link text-white d-flex justify-content-between align-items-center"
+              (click)="toggleMenu(item.label)"
+              style="cursor:pointer">
+              <div class="d-flex align-items-center">
+                <i class="bi {{item.icon}} sidebar-icon"></i>
+                <span class="menu-text">{{ item.label }}</span>
+              </div>
+              <i class="bi"
+                [ngClass]="isOpen(item.label) ? 'bi-caret-down-fill' : 'bi-caret-right-fill'">
+              </i>
+            </a>
+
+            @if (isOpen(item.label)) {
+              <ul class="submenu list-unstyled">
+                @for (child of item.children; track child.label) {
+                  <li>
+                    <a class="nav-link text-white ps-5"
+                      [routerLink]="child.route"
+                      routerLinkActive="active">
+                      {{ child.label }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          }
+
+          <!-- NORMAL MENU -->
+          @else {
+            <a class="nav-link text-white d-flex align-items-center"
+              [routerLink]="item.route">
+              <i class="bi {{item.icon}} sidebar-icon"></i>
+              <span class="menu-text">{{ item.label }}</span>
+            </a>
+          }
+        </li>
+      }
     </ul>
   </div>
 </div>
 
-<!-- BACKDROP -->
-@if (!(collapsed$ | async)) {
-  <div class="sidebar-backdrop d-lg-none"
-       (click)="close()">
-  </div>
-}
