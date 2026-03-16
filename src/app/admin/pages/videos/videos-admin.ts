@@ -16,6 +16,7 @@ export class VideosAdmin{
       fields: [
         { name: 'name', label: 'Name', type: 'text' },
         { name: 'email', label: 'Email', type: 'text' },
+        { name: 'status', label: 'Status', type: 'checkbox'},
         {
           name: 'role',
           label: 'Role',

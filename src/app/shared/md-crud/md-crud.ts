@@ -23,7 +23,7 @@ export class MasterCrudComponent<T> implements OnInit {
   viewMode: 'list' | 'form' = 'list';
   searchTerm = '';
   filtered: any[] = [];
- currentPage = 1;
+  currentPage = 1;
   pageSize = 5;
   constructor(
     private fb: FormBuilder) 
