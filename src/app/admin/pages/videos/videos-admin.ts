@@ -13,11 +13,13 @@ export class VideosAdmin{
 
   constructor(private fb: FormBuilder, private videoService: VideoAdminService) {
     this.videoForm = this.fb.group({
+      category: ['',],
       baseUrl: ['', Validators.required],
       channelId: [''],
       isPlaylist: [''],
       videoTitle: [''],
-      watchId: [''],
+      videoId: [''],
+      isLive: [''],
       isPublish: ['']
     });
   }

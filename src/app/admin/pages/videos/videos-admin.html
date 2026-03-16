@@ -22,8 +22,18 @@
         </div>
       </div>
       <div class="col-md-6">
-        <label class="form-label" for="watchId">Watch ID</label>
-        <input class="form-control" type="text" id="watchId" formControlName="watchId" />
+        <div class="form-check form-switch">
+          <label class="form-check-label" for="isLive">Is Live?</label>
+          <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isLive">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="videoId">Video ID</label>
+        <input class="form-control" type="text" id="videoId" formControlName="videoId" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="category">Category</label>
+        <input class="form-control" type="text" id="category" formControlName="category" />
       </div>
       <div class="col-md-6">
         <div class="form-check form-switch">
