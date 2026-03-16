@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 import { Admin } from './admin';
 import { AdminRouting } from './admin-routing.module';
@@ -10,7 +10,6 @@ import { AdminHome } from './pages/home/admin-home';
 import { AdminHeader } from './layout/admin-header/admin-header';
 import { AdminSidebar } from './layout/admin-sidebar/admin-sidebar';
 import { VideosAdmin } from './pages/videos/videos-admin';
-
 
 @NgModule({
   declarations: [
@@ -24,7 +23,8 @@ import { VideosAdmin } from './pages/videos/videos-admin';
   imports: [
     CommonModule,
     AdminRouting,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports:[]
 })

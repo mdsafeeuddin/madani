@@ -1,0 +1,110 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+      <h5 class="mb-0">{{config.title}}</h5>
+      <button class="btn btn-light btn-sm" *ngIf="viewMode==='list'" (click)="addNew()">
+        <i class="bi bi-plus"></i>
+      </button>
+    </div>
+    <div class="card-body">
+      <!-- ======================= -->
+      <!-- LIST VIEW -->
+      <!-- ======================= -->
+      <div *ngIf="viewMode==='list'" class="mb-3">
+      <form [formGroup]="filterForm">
+        <div class="row">
+          <div *ngFor="let field of config.filters" class="col-md-3 mb-2">
+            <label class="form-label">
+              {{field.label}}
+            </label>
+            <input *ngIf="field.type==='text'" class="form-control" [formControlName]="field.name">
+            <select *ngIf="field.type==='select'" class="form-select" [formControlName]="field.name">
+              <option value="">All</option>
+              <option *ngFor="let o of field.options" [value]="o.value">
+                {{o.label}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-primary me-2" type="button" (click)="applyFilters()">
+            Search
+          </button>
+          <button class="btn btn-secondary" type="button" (click)="filterForm.reset(); applyFilters()">
+            Reset
+          </button>
+        </div>
+      </form>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered align-middle">
+            <thead class="table-light">
+              <tr>
+                <th *ngFor="let col of config.columns">
+                  {{col.label}}
+                </th>
+                <th width="120">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of paginatedData()">
+               <td *ngFor="let col of config.columns">
+                  {{row[col.field]}}
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(row)">
+                   <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="delete(row.id)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav class="mt-3">
+            <ul class="pagination">
+              <li class="page-item" *ngFor="let page of [].constructor(totalPages()); let i = index">
+                <button class="page-link" (click)="changePage(i+1)">
+                  {{i+1}}
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- ======================= -->
+      <!-- FORM VIEW -->
+      <!-- ======================= -->
+      <div *ngIf="viewMode==='form'">
+        <form [formGroup]="form">
+          <div class="row">
+            <div *ngFor="let field of config.fields" class="mb-3" [ngClass]="{
+              'col-md-12': config.layout==='single',
+              'col-md-6': config.layout==='two-column',
+              'col-md-4': config.layout==='three-column'
+              }">
+              <label class="form-label">
+                {{field.label}}
+              </label>
+              <input *ngIf="field.type==='text'" class="form-control" type="text" [formControlName]="field.name">
+              <input *ngIf="field.type==='number'" class="form-control" type="number" [formControlName]="field.name">
+              <select *ngIf="field.type==='select'" class="form-select" [formControlName]="field.name">
+                <option *ngFor="let o of field.options" [value]="o.value">
+                  {{o.label}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-3">
+            <button type="button" class="btn btn-success me-2" (click)="save()">
+              {{editing ? 'Update' : 'Create'}}
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="cancel()">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

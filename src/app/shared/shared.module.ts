@@ -3,22 +3,29 @@ import { CommonModule } from '@angular/common';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { SectionComponent } from './section/section';
 import { CardComponent } from './card/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MasterCrudComponent } from './md-crud/md-crud';
 
 @NgModule({
   declarations: [
     SectionComponent,
-    CardComponent
+    CardComponent,
+    MasterCrudComponent
   ],
   imports: [
     CommonModule,
     SafeHtmlPipe,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     SafeHtmlPipe,
     SectionComponent,
     CardComponent,
-    CommonModule
+    CommonModule,
+    MasterCrudComponent,
+    ReactiveFormsModule
   ]
 
 })

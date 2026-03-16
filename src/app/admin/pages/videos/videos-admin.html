@@ -1,5 +1,9 @@
 <div class="container">
-  <form 
+  <md-crud
+    [config]="userConfig"
+    [service]="userService">
+  </md-crud>
+  <!-- <form 
     [formGroup]="videoForm" 
     (ngSubmit)="submitForm()">
     <div class="row g-3">
@@ -49,5 +53,5 @@
         </button>
       </div>
     </div>
-  </form>
+  </form> -->
 </div>
