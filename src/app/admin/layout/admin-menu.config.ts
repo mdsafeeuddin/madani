@@ -14,7 +14,16 @@ export const ADMIN_MENU: AdminMenuItem[] = [
   {
     label: 'Videos',
     icon: 'bi-camera-video',
-    route: 'videos'
+    children: [
+    {
+      label: 'Videos Admin',
+      route: 'vadmin'
+    },
+    {
+      label: 'Video Masters',
+      route: 'vmasters'
+    }
+  ]
   },
   {
     label: 'Settings',

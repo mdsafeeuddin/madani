@@ -15,49 +15,53 @@
       <!-- ======================= -->
       @if(viewMode === 'list'){
         <div class="mb-3">
-          <form [formGroup]="filterForm">
-            <div class="row">
-              @for(field of config.filters; track field.name){
-              <div class="col-md-3 mb-2">
-                <label class="form-label" [for]="'filter-' + field.name">
-                  {{ field.label }}
-                </label>
+          @if(config.filters && config.filters.length > 0){
+            <form [formGroup]="filterForm">
+              <div class="row">
+                @for(field of config.filters; track field.name){
+                <div class="col-md-3 mb-2">
+                  <label class="form-label" [for]="'filter-' + field.name">
+                    {{ field.label }}
+                  </label>
 
-                @switch(field.type){
-                  @case('text'){
-                  <input type="text" class="form-control" [id]="'filter-' + field.name" [placeholder]="field.label"
-                    [formControlName]="field.name">
-                  }
-                  @case('select'){
-                  <label [for]="'filter-' + field.name"></label>
-                  <select class="form-select" 
-                    [id]="'filter-' + field.name" 
-                    [title]="'filter-' + field.label"
-                    [formControlName]="field.name">
-                    <option value="">All</option>
-                    @for(o of field.options; track o.value){
-                    <option [value]="o.value">
-                      {{ o.label }}
-                    </option>
+                  @switch(field.type){
+                    @case('text'){
+                    <input type="text" 
+                      class="form-control" 
+                      [id]="'filter-' + field.name" 
+                      [title]="'filter-' + field.name"
+                      [placeholder]="field.label"
+                      [formControlName]="field.name">
                     }
-                  </select>
+                    @case('select'){
+                    <label [for]="'filter-' + field.name"></label>
+                    <select class="form-select" 
+                      [id]="'filter-' + field.name" 
+                      [title]="'filter-' + field.label"
+                      [formControlName]="field.name">
+                      <option value="">All</option>
+                      @for(o of field.options; track o.value){
+                      <option [value]="o.value">
+                        {{ o.label }}
+                      </option>
+                      }
+                    </select>
+                    }
                   }
+                </div>
                 }
+                <div class="col-md-3 mt-3">
+                  <button class="btn btn-primary me-2" type="button" (click)="applyFilters()">
+                    Search
+                  </button>
+            
+                  <button class="btn btn-secondary" type="button" (click)="filterForm.reset(); applyFilters()">
+                    Reset
+                  </button>
+                </div>
               </div>
-              }
-          
-              <div class="col-md-3 mt-3">
-                <button class="btn btn-primary me-2" type="button" (click)="applyFilters()">
-                  Search
-                </button>
-          
-                <button class="btn btn-secondary" type="button" (click)="filterForm.reset(); applyFilters()">
-                  Reset
-                </button>
-              </div>
-          
-            </div>
-          </form>
+            </form>
+          }
           <div class="table-responsive">
             <table class="table table-hover table-bordered align-middle">
               <thead class="table-light">
@@ -110,7 +114,7 @@
       <!-- FORM VIEW -->
       <!-- ======================= -->
       @if(viewMode === 'form'){
-       <form [formGroup]="form">
+      <form [formGroup]="form">
         <div class="row">
           @for(field of config.fields; track field.name){
             <div class="mb-3"
@@ -130,7 +134,7 @@
                     type="text"
                     class="form-control"
                     [id]="'field-' + field.name"
-                    [placeholder]="field.label"
+                    [title]="'field-' + field.label"
                     [formControlName]="field.name">
                 }
                 @case('number'){
@@ -138,15 +142,15 @@
                     type="number"
                     class="form-control"
                     [id]="'field-' + field.name"
-                    [placeholder]="field.label"
+                    [title]="'field-' + field.label"
                     [formControlName]="field.name">
                 }
                 @case('select'){
                   <label [for]="'field-' + field.name"></label>
                   <select
                     class="form-select"
-                    [title]="'field-' + field.label"
                     [id]="'field-' + field.name"
+                    [title]="'field-' + field.name"
                     [formControlName]="field.name">
 
                     @for(o of field.options; track o.value){
@@ -162,6 +166,7 @@
                       type="checkbox"
                       class="form-check-input"
                       [id]="'field-' + field.name"
+                      [title]="'field-' + field.label"
                       [formControlName]="field.name">
 
                     <label

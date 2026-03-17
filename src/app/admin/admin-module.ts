@@ -10,6 +10,8 @@ import { AdminHome } from './pages/home/admin-home';
 import { AdminHeader } from './layout/admin-header/admin-header';
 import { AdminSidebar } from './layout/admin-sidebar/admin-sidebar';
 import { VideosAdmin } from './pages/videos/videos-admin';
+import { VideoMasters } from './pages/videos/video-masters';
+import { VideoCategories, VideosBaseUrl, VideosChannels } from './pages/videos/vmasters.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { VideosAdmin } from './pages/videos/videos-admin';
     AdminHome,
     AdminHeader,
     AdminSidebar,
-    VideosAdmin
+    VideosAdmin,
+    VideoMasters
   ],
   imports: [
     CommonModule,

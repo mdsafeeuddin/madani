@@ -5,6 +5,7 @@ import { Admin } from "./admin";
 import { AuthGuard } from "./auth/auth.guard";
 import { AdminHome } from "./pages/home/admin-home";
 import { VideosAdmin } from "./pages/videos/videos-admin";
+import { VideoMasters } from "./pages/videos/video-masters";
 
 const routes: Routes = [
   {
@@ -22,7 +23,11 @@ const routes: Routes = [
         component: AdminHome
       },
       {
-        path:'videos',
+        path:'vmasters',
+        component: VideoMasters
+      },
+      {
+        path: 'vadmin',
         component: VideosAdmin
       }
     ]
