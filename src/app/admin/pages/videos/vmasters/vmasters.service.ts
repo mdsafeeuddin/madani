@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, deleteDoc, updateDoc, addDoc, docData } from '@angular/fire/firestore';
 import { Observable, from } from 'rxjs';
-import { CrudService } from '../../../shared/md-crud/crud-service.interface';
+import { CrudService } from '../../../../shared/md-crud/crud-service.interface';
 
 @Injectable({
   providedIn: 'root'

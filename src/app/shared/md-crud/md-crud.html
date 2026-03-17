@@ -14,100 +14,100 @@
       <!-- LIST VIEW -->
       <!-- ======================= -->
       @if(viewMode === 'list'){
-        <div class="mb-3">
-          @if(config.filters && config.filters.length > 0){
-            <form [formGroup]="filterForm">
-              <div class="row">
-                @for(field of config.filters; track field.name){
-                <div class="col-md-3 mb-2">
-                  <label class="form-label" [for]="'filter-' + field.name">
-                    {{ field.label }}
-                  </label>
+      <div class="mb-3">
+        @if(config.filters && config.filters.length > 0){
+          <form [formGroup]="filterForm">
+            <div class="row">
+              @for(field of config.filters; track field.name){
+              <div class="col-md-3 mb-2">
+                <label class="form-label" [for]="'filter-' + field.name">
+                  {{ field.label }}
+                </label>
 
-                  @switch(field.type){
-                    @case('text'){
-                    <input type="text" 
-                      class="form-control" 
-                      [id]="'filter-' + field.name" 
-                      [title]="'filter-' + field.name"
-                      [placeholder]="field.label"
-                      [formControlName]="field.name">
-                    }
-                    @case('select'){
-                    <label [for]="'filter-' + field.name"></label>
-                    <select class="form-select" 
-                      [id]="'filter-' + field.name" 
-                      [title]="'filter-' + field.label"
-                      [formControlName]="field.name">
-                      <option value="">All</option>
-                      @for(o of field.options; track o.value){
-                      <option [value]="o.value">
-                        {{ o.label }}
-                      </option>
-                      }
-                    </select>
-                    }
+                @switch(field.type){
+                  @case('text'){
+                  <input type="text" 
+                    class="form-control" 
+                    [id]="'filter-' + field.name" 
+                    [title]="'filter-' + field.name"
+                    [placeholder]="field.label"
+                    [formControlName]="field.name">
                   }
-                </div>
+                  @case('select'){
+                  <label [for]="'filter-' + field.name"></label>
+                  <select class="form-select" 
+                    [id]="'filter-' + field.name" 
+                    [title]="'filter-' + field.label"
+                    [formControlName]="field.name">
+                    <option value="">All</option>
+                    @for(o of field.options; track o.value){
+                    <option [value]="o.value">
+                      {{ o.label }}
+                    </option>
+                    }
+                  </select>
+                  }
                 }
-                <div class="col-md-3 mt-3">
-                  <button class="btn btn-primary me-2" type="button" (click)="applyFilters()">
-                    Search
-                  </button>
-            
-                  <button class="btn btn-secondary" type="button" (click)="filterForm.reset(); applyFilters()">
-                    Reset
-                  </button>
-                </div>
               </div>
-            </form>
-          }
-          <div class="table-responsive">
-            <table class="table table-hover table-bordered align-middle">
-              <thead class="table-light">
+              }
+              <div class="col-md-3 mt-3">
+                <button class="btn btn-primary me-2" type="button" (click)="applyFilters()">
+                  Search
+                </button>
+          
+                <button class="btn btn-secondary" type="button" (click)="filterForm.reset(); applyFilters()">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+        }
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered align-middle">
+            <thead class="table-light">
+              <tr>
+                @for(col of config.columns; track col.label){
+                  <th>
+                    {{col.label}}
+                  </th>
+                }
+                <th width="120">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(row of paginatedData(); track row.id){
                 <tr>
-                  @for(col of config.columns; track col.label){
-                    <th>
-                      {{col.label}}
-                    </th>
-                  }
-                  <th width="120">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for(row of paginatedData(); track row.id){
-                  <tr>
-                    @for(col of config.columns; track col){
-                      <td>
-                        {{row[col.field]}}
-                      </td>
-                    }
+                  @for(col of config.columns; track col){
                     <td>
-                      <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(row)">
-                      <i class="bi bi-pencil"></i>
-                      </button>
-                      <button class="btn btn-sm btn-outline-danger" (click)="delete(row.id)">
-                        <i class="bi bi-trash"></i>
-                      </button>
+                      {{row[col.field]}}
                     </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-            <nav class="mt-3">
-              <ul class="pagination">
-                @for(page of [].constructor(totalPages()); let i = $index; track i){
-                  <li class="page-item">
-                    <button class="page-link" (click)="changePage(i+1)">
-                      {{i+1}}
+                  }
+                  <td>
+                    <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(row)">
+                    <i class="bi bi-pencil"></i>
                     </button>
-                  </li>
-                }
-                
-              </ul>
-            </nav>
-          </div>
+                    <button class="btn btn-sm btn-outline-danger" (click)="delete(row.id)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <nav class="mt-3">
+            <ul class="pagination">
+              @for(page of [].constructor(totalPages()); let i = $index; track i){
+                <li class="page-item">
+                  <button class="page-link" (click)="changePage(i+1)">
+                    {{i+1}}
+                  </button>
+                </li>
+              }
+              
+            </ul>
+          </nav>
         </div>
+      </div>
       }
       
       <!-- ======================= -->
@@ -116,7 +116,7 @@
       @if(viewMode === 'form'){
       <form [formGroup]="form">
         <div class="row">
-          @for(field of config.fields; track field.name){
+          @for(field of config.fields; let i = $index; track i){
             <div class="mb-3"
               [ngClass]="{
                 'col-md-12': config.layout === 'single',

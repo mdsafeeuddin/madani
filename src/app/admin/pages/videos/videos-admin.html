@@ -1,53 +1,138 @@
 <div class="container">
-    <form 
-    [formGroup]="videoForm" 
-    (ngSubmit)="submitForm()">
-    <div class="row g-3">
-      <div class="col-md-12">
-        <label class="form-label" for="videoTitle">Video Title</label>
-        <input class="form-control" type="text" id="videoTitle" formControlName="videoTitle" />
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" for="baseUrl">Base URL</label>
-        <input class="form-control" type="text" id="baseUrl" formControlName="baseUrl" />
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" for="channelId">Channel ID</label>
-        <input class="form-control" type="text" id="channelId" formControlName="channelId" />
-      </div>
-      <div class="col-md-6">
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="isPlaylist">Is Playlist?</label>
-          <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isPlaylist">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="isLive">Is Live?</label>
-          <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isLive">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" for="videoId">Video ID</label>
-        <input class="form-control" type="text" id="videoId" formControlName="videoId" />
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" for="category">Category</label>
-        <input class="form-control" type="text" id="category" formControlName="category" />
-      </div>
-      <div class="col-md-6">
-        <div class="form-check form-switch">
-          <label class="form-check-label" for="isPublish">Publish</label>
-          <input class="form-check-input" type="checkbox" id="isPublish" formControlName="isPublish">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 text-end">
-        <button type="submit" class="btn btn-primary my-2" [disabled]="videoForm.invalid">
-          Submit
+  <div class="card shadow">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3>Manage Videos</h3>
+      @if(viewMode === 'list'){
+        <button class="btn btn-light btn-sm">
+          <span>Add</span>
+          <i class="bi bi-plus"></i>
         </button>
-      </div>
+      }
     </div>
-  </form>
+    <div class="card-body">
+      <!-- ======================= -->
+      <!-- LIST VIEW -->
+      <!-- ======================= -->
+      @if(viewMode === 'list'){
+      <div class="mb-3">
+          <form [formGroup]="filterForm">
+            <div class="row">
+              <div class="col-md-3 mb-2">
+                <label class="form-label" for="search"></label>
+                  <input type="text" 
+                    class="form-control" 
+                    id="search" 
+                    title="Search Videos"
+                    placeholder="Video Name"
+                    formControlName="title">
+              </div>
+              <div class="col-md-3 mt-3">
+                <button class="btn btn-primary me-2" type="button">
+                  Search
+                </button>
+          
+                <button class="btn btn-secondary" type="button">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered align-middle">
+            <thead class="table-light">
+              <tr>
+                <th width="120">Title</th>
+                <th width="120">Channel</th>
+                <th width="120">Status</th>
+                <th width="120">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-primary me-2" >
+                    <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+          <nav class="mt-3">
+            <ul class="pagination">
+             
+                <li class="page-item">
+                  <button class="page-link">
+                  </button>
+                </li>
+              
+            </ul>
+          </nav>
+        </div>
+      </div>
+      }
+      
+      <!-- ======================= -->
+      <!-- FORM VIEW -->
+      <!-- ======================= -->
+      @if(viewMode === 'form'){
+        <form 
+          [formGroup]="videoForm" 
+          (ngSubmit)="submitForm()">
+          <div class="row g-3">
+            <div class="col-md-12">
+              <label class="form-label" for="videoTitle">Video Title</label>
+              <input class="form-control" type="text" id="videoTitle" formControlName="videoTitle" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="baseUrl">Base URL</label>
+              <input class="form-control" type="text" id="baseUrl" formControlName="baseUrl" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="channelId">Channel ID</label>
+              <input class="form-control" type="text" id="channelId" formControlName="channelId" />
+            </div>
+            <div class="col-md-6">
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="isPlaylist">Is Playlist?</label>
+                <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isPlaylist">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="isLive">Is Live?</label>
+                <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isLive">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="videoId">Video ID</label>
+              <input class="form-control" type="text" id="videoId" formControlName="videoId" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="category">Category</label>
+              <input class="form-control" type="text" id="category" formControlName="category" />
+            </div>
+            <div class="col-md-6">
+              <div class="form-check form-switch">
+                <label class="form-check-label" for="isPublish">Publish</label>
+                <input class="form-check-input" type="checkbox" id="isPublish" formControlName="isPublish">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-end">
+              <button type="submit" class="btn btn-primary my-2" [disabled]="videoForm.invalid">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      }
+    </div>
+  </div>
 </div>

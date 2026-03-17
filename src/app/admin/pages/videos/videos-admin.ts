@@ -8,14 +8,26 @@ import { VideoAdminService } from "./video-admin.service";
   templateUrl: './videos-admin.html'
 })
 export class VideosAdmin{
-   videoForm: FormGroup;
+    videoForm!: FormGroup;
+    filterForm!: FormGroup;
+    data: any[] = [];
+    editing = false;
+    selectedId: string | null = null;
+    viewMode: 'list' | 'form' = 'list';
+    searchTerm = '';
+    filtered: any[] = [];
+    currentPage = 1;
+    pageSize = 5;
    
   constructor(
     private fb: FormBuilder, 
     private videoService: VideoAdminService) 
   {
-    this.videoForm = this.fb.group({
-      category: ['',],
+   
+  }
+  ngOnInit() {
+     this.videoForm = this.fb.group({
+      category: [''],
       baseUrl: ['', Validators.required],
       channelId: [''],
       isPlaylist: [''],
@@ -24,16 +36,48 @@ export class VideosAdmin{
       isLive: [''],
       isPublish: ['']
     });
+    this.loadData();
+    this.filterForm = this.fb.group({
+      title: [''],
+      channel: ['']
+    });
+  }
+  loadData(){
+    this.videoService.search().subscribe(res => {
+    this.data = res;
+    this.filtered = res;
+    console.log(this.filtered)
+    });
+  }
+  addNew() {
+    this.viewMode = 'form';
+    this.editing = false;
+    this.videoForm.reset();
+  }
+
+  edit(row: any) {
+    this.viewMode = 'form';
+    this.editing = true;
+    this.selectedId = row.id;
+    this.videoForm.patchValue(row);
   }
   submitForm() {
-    if (this.videoForm.invalid) return;
-    this.videoService.addVideo(this.videoForm.value)
-      .then(() => {
-        console.log('Video added successfully');
-        this.videoForm.reset();
-      })
-      .catch(error => {
-        console.error('Error adding video:', error);
-      });
+     if (this.editing) {
+      this.videoService.update(this.selectedId!, this.videoForm.value)
+        .subscribe(() => {
+          this.loadData();
+          this.cancel();
+        });
+    } else {
+      this.videoService.create(this.videoForm.value)
+        .subscribe(() => {
+          this.loadData();
+          this.cancel();
+        });
+    }
+  }
+  cancel() {
+    this.viewMode = 'list';
+    this.videoForm.reset();
   }
 }

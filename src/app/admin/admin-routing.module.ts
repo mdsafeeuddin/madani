@@ -5,7 +5,7 @@ import { Admin } from "./admin";
 import { AuthGuard } from "./auth/auth.guard";
 import { AdminHome } from "./pages/home/admin-home";
 import { VideosAdmin } from "./pages/videos/videos-admin";
-import { VideoMasters } from "./pages/videos/video-masters";
+import { VideoMasters } from "./pages/videos/vmasters/video-masters";
 
 const routes: Routes = [
   {

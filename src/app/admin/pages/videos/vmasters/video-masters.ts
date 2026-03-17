@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { MasterConfig } from "../../../shared/md-crud/master-config.model";
+import { MasterConfig } from "../../../../shared/md-crud/master-config.model";
 import { VideoCategories, VideosBaseUrl, VideosChannels } from "./vmasters.service";
 
 @Component({
