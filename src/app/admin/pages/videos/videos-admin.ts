@@ -25,6 +25,7 @@ export class VideosAdmin{
   {
    
   }
+
   ngOnInit() {
      this.videoForm = this.fb.group({
       category: [''],
@@ -38,17 +39,47 @@ export class VideosAdmin{
     });
     this.loadData();
     this.filterForm = this.fb.group({
-      title: [''],
+      videoTitle: [''],
       channel: ['']
     });
   }
+
   loadData(){
     this.videoService.search().subscribe(res => {
     this.data = res;
     this.filtered = res;
-    console.log(this.filtered)
     });
   }
+
+  filteredData() {
+    if (!this.searchTerm) return this.data;
+    return this.data.filter(item =>
+      Object.values(item)
+        .join(' ')
+        .toLowerCase()
+        .includes(this.searchTerm.toLowerCase())
+    );
+  }
+
+  applyFilters() {
+    const filters = this.filterForm.value;
+    this.filtered = this.data.filter(item => {
+      return Object.keys(filters).every(key => {
+        if (!filters[key]) return true;
+        return item[key]
+          .toString()
+          .toLowerCase()
+          .includes(filters[key].toLowerCase());
+      });
+    });
+    this.currentPage = 1;
+  }
+
+  paginatedData() {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.filtered.slice(start, start + this.pageSize);
+  }
+
   addNew() {
     this.viewMode = 'form';
     this.editing = false;
@@ -61,6 +92,14 @@ export class VideosAdmin{
     this.selectedId = row.id;
     this.videoForm.patchValue(row);
   }
+
+   delete(id: string) {
+    if (confirm('Delete record?')) {
+      this.videoService.delete(id)
+        .subscribe(() => this.loadData());
+    }
+  }
+
   submitForm() {
      if (this.editing) {
       this.videoService.update(this.selectedId!, this.videoForm.value)
@@ -76,6 +115,7 @@ export class VideosAdmin{
         });
     }
   }
+
   cancel() {
     this.viewMode = 'list';
     this.videoForm.reset();

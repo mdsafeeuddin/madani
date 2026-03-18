@@ -7,7 +7,7 @@ import { Observable, from } from "rxjs";
   providedIn: 'root'
 })
 export class VideoAdminService implements CrudService<any>{
-  private collectionName = 'vBaseUrl';
+  private collectionName = 'videoLinks';
   constructor(private firestore: Firestore) {}
   search(params?: any): Observable<any[]> {
     const ref = collection(this.firestore, this.collectionName);

@@ -6,8 +6,8 @@ import { CrudService } from '../../../../shared/md-crud/crud-service.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class VideosBaseUrl implements CrudService<any>{
-  private collectionName = 'vBaseUrl';
+export class VideoTypesService implements CrudService<any>{
+  private collectionName = 'vTypes';
   constructor(private firestore: Firestore) {}
   search(params?: any): Observable<any[]> {
     const ref = collection(this.firestore, this.collectionName);

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { MasterConfig } from "../../../../shared/md-crud/master-config.model";
-import { VideoCategories, VideosBaseUrl, VideosChannels } from "./vmasters.service";
+import { VideoCategories, VideoTypesService, VideosChannels } from "./vmasters.service";
 
 @Component({
   selector: 'video-masters',
@@ -10,22 +10,23 @@ import { VideoCategories, VideosBaseUrl, VideosChannels } from "./vmasters.servi
 
 export class VideoMasters {
 constructor(
-    public vBaseService: VideosBaseUrl,
+    public vTypesService: VideoTypesService,
     public vCatService: VideoCategories,
     public vChannService: VideosChannels){
 
   }
-  vbaseConfig: MasterConfig = {
-    title: 'Base URL',
+  vTypesConfig: MasterConfig = {
+    title: 'Video Types',
     layout: 'two-column',
     fields: [
       {name: 'name', label: 'Name', type: 'text'},
-      {name: 'url', label: 'Url', type: 'text'},
+      {name: 'baseUrl', label: 'Url', type: 'text'},
+      {name: 'code', label: 'Short code', type: 'text'},
       {name: 'status', label: 'Status', type: 'checkbox'}
     ],
     columns: [
       {field: 'name', label: 'Name'},
-      {field: 'url', label: 'Url'},
+      {field: 'baseUrl', label: 'Url'},
       {field: 'status', label: 'Status'}
     ]
   }

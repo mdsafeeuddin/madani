@@ -3,7 +3,7 @@
     <div class="card-header d-flex justify-content-between align-items-center">
       <h3>Manage Videos</h3>
       @if(viewMode === 'list'){
-        <button class="btn btn-light btn-sm">
+        <button class="btn btn-light btn-sm" (click)="addNew()">
           <span>Add</span>
           <i class="bi bi-plus"></i>
         </button>
@@ -23,15 +23,15 @@
                     class="form-control" 
                     id="search" 
                     title="Search Videos"
-                    placeholder="Video Name"
-                    formControlName="title">
+                    placeholder="Title"
+                    formControlName="videoTitle">
               </div>
               <div class="col-md-3 mt-3">
-                <button class="btn btn-primary me-2" type="button">
+                <button class="btn btn-primary me-2" type="button" (click)="applyFilters()">
                   Search
                 </button>
           
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary" type="button" (click)="filterForm.reset(); applyFilters()">
                   Reset
                 </button>
               </div>
@@ -48,19 +48,21 @@
               </tr>
             </thead>
             <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <button class="btn btn-sm btn-outline-primary me-2" >
-                    <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </td>
-                </tr>
+            @for(row of paginatedData(); track row.id){
+              <tr>
+                <td>{{row.videoTitle}}</td>
+                <td>{{row.channelId}}</td>
+                <td>{{row.isPublish}}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(row)" >
+                  <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="delete(row.id)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
             </tbody>
           </table>
           <nav class="mt-3">
@@ -126,6 +128,9 @@
           </div>
           <div class="row">
             <div class="col-12 text-end">
+              <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
+                Cancel
+              </button>
               <button type="submit" class="btn btn-primary my-2" [disabled]="videoForm.invalid">
                 Submit
               </button>
