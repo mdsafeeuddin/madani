@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Website } from './website/website';
 import { WebHome } from './website/pages/home/home';
+import { WebTeachings } from './website/pages/tngs/tngs';
 
 const routes: Routes = [
   {
@@ -13,6 +14,9 @@ const routes: Routes = [
         path: 'blogs',
         loadChildren: () =>
           import('./website/pages/blog/blog-module').then(m => m.BlogModule)
+      },
+      {
+        path:'teachings', component: WebTeachings
       }
     ]
   },

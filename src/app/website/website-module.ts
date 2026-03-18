@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './layout/navbar';
 import { FooterComponent } from './layout/footer';
 import { SharedModule } from '../shared/shared.module';
-import { HeroComponent } from './pages/home/hero';
+import { WebTeachings } from './pages/tngs/tngs';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { HeroComponent } from './pages/home/hero';
     WebHome,
     NavbarComponent,
     FooterComponent,
-    HeroComponent
+    WebTeachings
   ],
   imports: [
     CommonModule,
