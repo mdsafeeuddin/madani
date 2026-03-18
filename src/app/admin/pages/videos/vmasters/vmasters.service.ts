@@ -33,7 +33,7 @@ export class VideoTypesService implements CrudService<any>{
 @Injectable({
   providedIn: 'root'
 })
-export class VideoCategories implements CrudService<any>{
+export class VideoCategoryService implements CrudService<any>{
   private collectionName = 'vCategories';
   constructor(private firestore: Firestore) {}
   search(params?: any): Observable<any[]> {
@@ -60,7 +60,7 @@ export class VideoCategories implements CrudService<any>{
 @Injectable({
   providedIn: 'root'
 })
-export class VideosChannels implements CrudService<any>{
+export class VideoChannelService implements CrudService<any>{
   private collectionName = 'vChannels';
   constructor(private firestore: Firestore) {}
   search(params?: any): Observable<any[]> {

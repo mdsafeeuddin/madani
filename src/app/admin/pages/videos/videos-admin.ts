@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { VideoAdminService } from "./video-admin.service";
+import { VideoCategoryService, VideoChannelService, VideoTypesService } from "./vmasters/vmasters.service";
 
 @Component({
   standalone: false,
@@ -11,6 +12,9 @@ export class VideosAdmin{
     videoForm!: FormGroup;
     filterForm!: FormGroup;
     data: any[] = [];
+    vTypes!: any[];
+    vCats!: any[];
+    vChans!: any[];
     editing = false;
     selectedId: string | null = null;
     viewMode: 'list' | 'form' = 'list';
@@ -21,20 +25,21 @@ export class VideosAdmin{
    
   constructor(
     private fb: FormBuilder, 
-    private videoService: VideoAdminService) 
+    private videoService: VideoAdminService,
+    private vTypesServ: VideoTypesService,
+    private vChannServ: VideoChannelService,
+    private vCatServ: VideoCategoryService) 
   {
    
   }
 
   ngOnInit() {
      this.videoForm = this.fb.group({
-      category: [''],
-      baseUrl: ['', Validators.required],
-      channelId: [''],
-      isPlaylist: [''],
       videoTitle: [''],
+      vType: ['', Validators.required],
+      channel: [''],
+      category: [''],
       videoId: [''],
-      isLive: [''],
       isPublish: ['']
     });
     this.loadData();
@@ -80,7 +85,36 @@ export class VideosAdmin{
     return this.filtered.slice(start, start + this.pageSize);
   }
 
+  totalPages() {
+    return Math.ceil(this.filtered.length / this.pageSize);
+  }
+  
+  changePage(page:number){
+    this.currentPage = page;
+  }
+
+  getVideoTypes(){
+    this.vTypesServ.search().subscribe(res =>{
+      this.vTypes = res;
+    })
+  }
+
+  getVideoChan(){
+    this.vChannServ.search().subscribe(res =>{
+      this.vChans = res;
+    })
+  }
+
+  getVideoCat(){
+    this.vCatServ.search().subscribe(res=>{
+      this.vCats = res;
+    })
+  }
+
   addNew() {
+    this.getVideoTypes();
+    this.getVideoChan();
+    this.getVideoCat();
     this.viewMode = 'form';
     this.editing = false;
     this.videoForm.reset();
@@ -108,6 +142,7 @@ export class VideosAdmin{
           this.cancel();
         });
     } else {
+      console.log(this.videoForm.value)
       this.videoService.create(this.videoForm.value)
         .subscribe(() => {
           this.loadData();

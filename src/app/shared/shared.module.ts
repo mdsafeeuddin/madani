@@ -5,12 +5,14 @@ import { SectionComponent } from './section/section';
 import { CardComponent } from './card/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MasterCrudComponent } from './md-crud/md-crud';
+import { YoutubeIframe } from './yframe/yframe';
 
 @NgModule({
   declarations: [
     SectionComponent,
     CardComponent,
-    MasterCrudComponent
+    MasterCrudComponent,
+    YoutubeIframe
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { MasterCrudComponent } from './md-crud/md-crud';
     CardComponent,
     CommonModule,
     MasterCrudComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    YoutubeIframe
   ]
 
 })

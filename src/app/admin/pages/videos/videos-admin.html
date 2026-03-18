@@ -3,10 +3,10 @@
     <div class="card-header d-flex justify-content-between align-items-center">
       <h3>Manage Videos</h3>
       @if(viewMode === 'list'){
-        <button class="btn btn-light btn-sm" (click)="addNew()">
-          <span>Add</span>
-          <i class="bi bi-plus"></i>
-        </button>
+      <button class="btn btn-light btn-sm" (click)="addNew()">
+        <span>Add</span>
+        <i class="bi bi-plus"></i>
+      </button>
       }
     </div>
     <div class="card-body">
@@ -67,12 +67,13 @@
           </table>
           <nav class="mt-3">
             <ul class="pagination">
-             
-                <li class="page-item">
-                  <button class="page-link">
-                  </button>
-                </li>
-              
+              @for(page of [].constructor(totalPages()); let i = $index; track i){
+              <li class="page-item">
+                <button class="page-link" (click)="changePage(i+1)">
+                  {{i+1}}
+                </button>
+              </li>
+              }
             </ul>
           </nav>
         </div>
@@ -92,32 +93,32 @@
               <input class="form-control" type="text" id="videoTitle" formControlName="videoTitle" />
             </div>
             <div class="col-md-6">
-              <label class="form-label" for="baseUrl">Base URL</label>
-              <input class="form-control" type="text" id="baseUrl" formControlName="baseUrl" />
+              <label class="form-select-label" for="vType">Video Type</label>
+              <select class="form-select" type="select" id="vType" formControlName="vType">
+                @for(vtype of vTypes; track vtype.name){
+                  <option value="{{vtype.code}}">{{vtype.name}}</option>
+                }
+              </select>
             </div>
             <div class="col-md-6">
-              <label class="form-label" for="channelId">Channel ID</label>
-              <input class="form-control" type="text" id="channelId" formControlName="channelId" />
+              <label class="form-select-label" for="channel">Channel</label>
+              <select class="form-select" type="select" id="channel" formControlName="channel">
+                @for(vchan of vChans; track vchan){
+                <option value="{{vchan.name}}">{{vchan.name}}</option>
+                }
+              </select>
             </div>
             <div class="col-md-6">
-              <div class="form-check form-switch">
-                <label class="form-check-label" for="isPlaylist">Is Playlist?</label>
-                <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isPlaylist">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-check form-switch">
-                <label class="form-check-label" for="isLive">Is Live?</label>
-                <input class="form-check-input" type="checkbox" id="isPlaylist"  formControlName="isLive">
-              </div>
+              <label class="form-select-label" for="category">Category</label>
+              <select class="form-select" type="select" id="category" formControlName="category">
+                @for(vcat of vCats; track vcat){
+                <option value="{{vcat.name}}">{{vcat.name}}</option>
+                }
+              </select>
             </div>
             <div class="col-md-6">
               <label class="form-label" for="videoId">Video ID</label>
               <input class="form-control" type="text" id="videoId" formControlName="videoId" />
-            </div>
-            <div class="col-md-6">
-              <label class="form-label" for="category">Category</label>
-              <input class="form-control" type="text" id="category" formControlName="category" />
             </div>
             <div class="col-md-6">
               <div class="form-check form-switch">

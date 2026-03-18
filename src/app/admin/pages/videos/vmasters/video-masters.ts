@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { MasterConfig } from "../../../../shared/md-crud/master-config.model";
-import { VideoCategories, VideoTypesService, VideosChannels } from "./vmasters.service";
+import { VideoCategoryService, VideoTypesService, VideoChannelService } from "./vmasters.service";
 
 @Component({
   selector: 'video-masters',
@@ -11,8 +11,8 @@ import { VideoCategories, VideoTypesService, VideosChannels } from "./vmasters.s
 export class VideoMasters {
 constructor(
     public vTypesService: VideoTypesService,
-    public vCatService: VideoCategories,
-    public vChannService: VideosChannels){
+    public vCatService: VideoCategoryService,
+    public vChannService: VideoChannelService){
 
   }
   vTypesConfig: MasterConfig = {
