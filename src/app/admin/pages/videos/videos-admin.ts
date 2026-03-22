@@ -43,6 +43,9 @@ export class VideosAdmin{
       isPublish: ['']
     });
     this.loadData();
+    this.getVideoTypes();
+    this.getVideoChan();
+    this.getVideoCat();
     this.filterForm = this.fb.group({
       videoTitle: [''],
       channel: ['']
@@ -112,9 +115,6 @@ export class VideosAdmin{
   }
 
   addNew() {
-    this.getVideoTypes();
-    this.getVideoChan();
-    this.getVideoCat();
     this.viewMode = 'form';
     this.editing = false;
     this.videoForm.reset();
@@ -124,7 +124,14 @@ export class VideosAdmin{
     this.viewMode = 'form';
     this.editing = true;
     this.selectedId = row.id;
-    this.videoForm.patchValue(row);
+    this.videoForm.patchValue({
+      videoTitle: row.videoTitle,
+      vType: row.vType,
+      channel: row.channel,
+      category: row.category,
+      videoId: row.videoId,
+      isPublish: row.isPublish
+    });
   }
 
    delete(id: string) {
@@ -142,7 +149,6 @@ export class VideosAdmin{
           this.cancel();
         });
     } else {
-      console.log(this.videoForm.value)
       this.videoService.create(this.videoForm.value)
         .subscribe(() => {
           this.loadData();

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="card shadow">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h3>Manage Videos</h3>
@@ -51,7 +51,7 @@
             @for(row of paginatedData(); track row.id){
               <tr>
                 <td>{{row.videoTitle}}</td>
-                <td>{{row.channelId}}</td>
+                <td>{{row.channel}}</td>
                 <td>{{row.isPublish}}</td>
                 <td>
                   <button class="btn btn-sm btn-outline-primary me-2" (click)="edit(row)" >
